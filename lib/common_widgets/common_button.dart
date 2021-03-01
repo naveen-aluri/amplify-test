@@ -6,20 +6,27 @@ class CommonButton extends StatelessWidget {
   final VoidCallback onPressed;
   final Color color;
   final Color textColor;
+  final Widget icon;
 
   const CommonButton(
-      {Key key, this.title, this.onPressed, this.color, this.textColor})
+      {Key key,
+      this.title,
+      this.onPressed,
+      this.color,
+      this.textColor,
+      this.icon})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return RaisedButton(
+    return RaisedButton.icon(
       color: color,
-      child: Text('$title', style: Styles.bold(color: textColor)),
+      label: Text('$title', style: Styles.bold(color: textColor)),
       onPressed: onPressed,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(25),
       ),
+      icon: icon ?? SizedBox(),
     );
   }
 }

@@ -4,6 +4,7 @@ import 'package:amplify_test/common_widgets/common_text_button.dart';
 import 'package:amplify_test/common_widgets/common_textfield.dart';
 import 'package:amplify_test/utils/colors.dart';
 import 'package:amplify_test/utils/styles.dart';
+import 'package:amplify_test/view/authentication/signup_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -100,12 +101,17 @@ class _LoginPageState extends State<LoginPage> {
                 title: 'Sign up',
                 color: goldColor,
                 isBold: true,
-                onPressed: () {},
+                onPressed: () => _navigateToSignupPage(),
               ),
             ],
           ),
         ],
       ),
     );
+  }
+
+  void _navigateToSignupPage() {
+    Navigator.push(
+        context, new MaterialPageRoute(builder: (context) => new SignupPage()));
   }
 }

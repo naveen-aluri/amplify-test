@@ -1,3 +1,4 @@
+import 'package:amplify_test/utils/constants.dart';
 import 'package:flutter/material.dart';
 
 import 'view/authentication/login_page.dart';
@@ -18,6 +19,9 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Poppins',
       ),
       home: LoginPage(),
+      routes: {
+        LOGIN_ROUTE: (context) => LoginPage(),
+      },
     );
   }
 }
