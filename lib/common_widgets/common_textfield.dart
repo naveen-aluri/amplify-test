@@ -11,6 +11,8 @@ class CommonTextField extends StatelessWidget {
   final bool obscureText;
   final Color borderColor;
   final Color fillColor;
+  final Color textColor;
+  final ValueChanged onChanged;
 
   const CommonTextField(
       {Key key,
@@ -22,7 +24,9 @@ class CommonTextField extends StatelessWidget {
       this.textInputAction,
       this.obscureText,
       this.borderColor = Colors.white,
-      this.fillColor = Colors.transparent})
+      this.fillColor = Colors.transparent,
+      this.textColor = Colors.white,
+      this.onChanged})
       : super(key: key);
 
   @override
@@ -34,10 +38,11 @@ class CommonTextField extends StatelessWidget {
       textCapitalization: TextCapitalization.none,
       textInputAction: textInputAction,
       obscureText: obscureText,
-      style: Styles.regular(color: Colors.white),
+      style: Styles.regular(color: textColor),
       onSubmitted: (val) {
         FocusScope.of(context).requestFocus(nextFocusNode);
       },
+      onChanged: onChanged,
       decoration: InputDecoration(
         border: OutlineInputBorder(borderSide: BorderSide(color: borderColor)),
         disabledBorder:

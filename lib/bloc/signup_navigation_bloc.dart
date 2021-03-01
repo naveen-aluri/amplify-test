@@ -4,8 +4,8 @@ class SignupNavigationBloc {
   var serviceFetcher = BehaviorSubject<int>.seeded(0);
   Stream<int> get responseData => serviceFetcher.stream;
 
-  navigationTo(int passedIndex) async {
-    serviceFetcher.sink.add(passedIndex);
+  navigationTo(int index) async {
+    serviceFetcher.sink.add(index);
   }
 
   void dispose() async {

@@ -1,9 +1,12 @@
+import 'package:amplify_test/bloc/gender_selection_bloc.dart';
+import 'package:amplify_test/bloc/signup_bloc.dart';
 import 'package:amplify_test/bloc/signup_navigation_bloc.dart';
 import 'package:amplify_test/common_widgets/common_button.dart';
 import 'package:amplify_test/common_widgets/signup_tab_indicator.dart';
 import 'package:amplify_test/utils/colors.dart';
 import 'package:flutter/material.dart';
 
+import 'password_confirmation_page.dart';
 import 'registration_page.dart';
 
 class SignupEmailPage extends StatefulWidget {
@@ -12,6 +15,21 @@ class SignupEmailPage extends StatefulWidget {
 }
 
 class _SignupEmailPageState extends State<SignupEmailPage> {
+  @override
+  void initState() {
+    super.initState();
+    signupNavigationBloc.navigationTo(0);
+    genderSelectionBloc.select(0);
+  }
+
+  @override
+  void dispose() {
+    signupNavigationBloc.dispose();
+    genderSelectionBloc.dispose();
+    signupBloc.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +54,10 @@ class _SignupEmailPageState extends State<SignupEmailPage> {
                 title: snapshot.data == 0 ? 'NEXT' : 'CONTINUE',
                 color: goldColor,
                 onPressed: () {
-                  if (snapshot.data == 0) signupNavigationBloc.navigationTo(1);
+                  if (snapshot.data == 0)
+                    signupBloc.onNext();
+                  else
+                    signupBloc.onContinue(context);
                 },
                 textColor: Colors.black,
               );
@@ -45,7 +66,9 @@ class _SignupEmailPageState extends State<SignupEmailPage> {
       body: StreamBuilder(
           stream: signupNavigationBloc.responseData,
           builder: (context, AsyncSnapshot<int> snapshot) {
-            return snapshot.data == 0 ? RegistrationPage() : Container();
+            return snapshot.data == 0
+                ? RegistrationPage()
+                : PasswordConfirmationPage();
           }),
     );
   }

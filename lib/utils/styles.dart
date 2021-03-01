@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class Styles {
-  static TextStyle regular({Color color}) {
+  static TextStyle regular({Color color, double fontSize = 14}) {
     return TextStyle(
         fontFamily: 'Poppins',
-        fontSize: 14,
+        fontSize: fontSize,
         fontWeight: FontWeight.normal,
         color: color);
   }

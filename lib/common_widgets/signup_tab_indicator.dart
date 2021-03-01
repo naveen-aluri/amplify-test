@@ -22,10 +22,7 @@ class SignupTabIndicator extends PreferredSize {
                     padding: const EdgeInsets.only(top: 10, bottom: 20),
                     child: Row(
                       children: [
-                        Expanded(
-                            child: Container(
-                                height: 3,
-                                color: index == 0 ? goldColor : Colors.grey)),
+                        Expanded(child: Container(height: 3, color: goldColor)),
                         SizedBox(width: 10),
                         Expanded(
                             child: Container(

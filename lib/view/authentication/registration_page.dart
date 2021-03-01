@@ -1,7 +1,9 @@
 import 'package:amplify_test/bloc/gender_selection_bloc.dart';
+import 'package:amplify_test/bloc/signup_bloc.dart';
 import 'package:amplify_test/common_widgets/common_textfield.dart';
 import 'package:amplify_test/common_widgets/custom_dropdown.dart';
 import 'package:amplify_test/common_widgets/gender_widget.dart';
+import 'package:amplify_test/model/register.dart';
 import 'package:amplify_test/utils/strings.dart';
 import 'package:amplify_test/utils/styles.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +17,14 @@ class _RegistrationPageState extends State<RegistrationPage> {
   TextEditingController _emailController = new TextEditingController();
   int _selectedGenderIndex;
   String _selectedDuration;
+
+  Register register;
+
+  @override
+  void initState() {
+    super.initState();
+    register = new Register();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,10 +40,15 @@ class _RegistrationPageState extends State<RegistrationPage> {
           nextFocusNode: FocusNode(),
           hint: 'Email',
           obscureText: false,
+          textColor: Colors.black,
           keyboardType: TextInputType.emailAddress,
           textInputAction: TextInputAction.done,
           borderColor: Colors.grey[300],
           fillColor: Colors.grey[100],
+          onChanged: (val) {
+            register.email = val;
+            signupBloc.updateData(register);
+          },
         ),
         SizedBox(height: 30),
         Text('What\'s your gender?', style: Styles.bold(color: Colors.black)),
@@ -41,7 +56,11 @@ class _RegistrationPageState extends State<RegistrationPage> {
         StreamBuilder(
             stream: genderSelectionBloc.responseData,
             builder: (context, AsyncSnapshot<int> genderIndex) {
-              _selectedGenderIndex = genderIndex.data;
+              if (genderIndex.hasData) {
+                _selectedGenderIndex = genderIndex.data;
+                register.gender = GENDER_LIST[_selectedGenderIndex];
+                signupBloc.updateData(register);
+              }
               return GenderWidget(index: _selectedGenderIndex);
             }),
         SizedBox(height: 30),

@@ -41,3 +41,20 @@ showLoadingDialog(BuildContext context) {
     builder: (context) => LoadingDialog(),
   );
 }
+
+bool isPasswordValid(String password, String cnfPassword, [int minLength = 8]) {
+  if (password == null ||
+      password.isEmpty ||
+      cnfPassword == null ||
+      cnfPassword.isEmpty) {
+    return false;
+  }
+
+  bool hasUppercase = password.contains(new RegExp(r'[A-Z]'));
+  bool hasDigits = password.contains(new RegExp(r'[0-9]'));
+  bool hasLowercase = password.contains(new RegExp(r'[a-z]'));
+  bool hasMinLength = password.length > minLength;
+  bool hasMatch = password.compareTo(cnfPassword) == 0 ? true : false;
+
+  return hasDigits & hasUppercase & hasLowercase & hasMatch & hasMinLength;
+}
