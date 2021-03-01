@@ -1,3 +1,4 @@
+import 'package:amplify_test/bloc/login_bloc.dart';
 import 'package:amplify_test/common_widgets/common_button.dart';
 import 'package:amplify_test/common_widgets/common_text_button.dart';
 import 'package:amplify_test/common_widgets/common_textfield.dart';
@@ -28,7 +29,7 @@ class _LoginPageState extends State<LoginPage> {
         leading: IconButton(
           icon: Icon(Icons.arrow_back_ios),
           onPressed: () {
-            // Navigator.pop(context);
+            Navigator.pop(context);
           },
         ),
       ),
@@ -71,7 +72,8 @@ class _LoginPageState extends State<LoginPage> {
             title: 'LOG IN',
             color: goldColor,
             textColor: Colors.black,
-            onPressed: () {},
+            onPressed: () => loginBloc.login(
+                context, _emailController.text, _passwordController.text),
           ),
           SizedBox(height: 10),
           CommonTextButton(
