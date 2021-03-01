@@ -9,6 +9,8 @@ class CommonTextField extends StatelessWidget {
   final TextInputAction textInputAction;
   final String hint;
   final bool obscureText;
+  final Color borderColor;
+  final Color fillColor;
 
   const CommonTextField(
       {Key key,
@@ -18,7 +20,9 @@ class CommonTextField extends StatelessWidget {
       this.hint,
       this.keyboardType,
       this.textInputAction,
-      this.obscureText})
+      this.obscureText,
+      this.borderColor = Colors.white,
+      this.fillColor = Colors.transparent})
       : super(key: key);
 
   @override
@@ -35,16 +39,18 @@ class CommonTextField extends StatelessWidget {
         FocusScope.of(context).requestFocus(nextFocusNode);
       },
       decoration: InputDecoration(
-        border: OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
+        border: OutlineInputBorder(borderSide: BorderSide(color: borderColor)),
         disabledBorder:
-            OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
+            OutlineInputBorder(borderSide: BorderSide(color: borderColor)),
         enabledBorder:
-            OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
+            OutlineInputBorder(borderSide: BorderSide(color: borderColor)),
         focusedBorder:
-            OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
+            OutlineInputBorder(borderSide: BorderSide(color: borderColor)),
         hintText: hint,
         hintStyle: Styles.regular(color: Colors.grey),
         isDense: true,
+        fillColor: fillColor,
+        filled: true,
       ),
     );
   }
