@@ -4,6 +4,7 @@ import 'package:amplify_test/utils/colors.dart';
 import 'package:amplify_test/utils/constants.dart';
 import 'package:amplify_test/utils/styles.dart';
 import 'package:amplify_test/view/authentication/signup_email_page.dart';
+import 'package:amplify_test/view/dashboard/webview_page.dart';
 import 'package:flutter/material.dart';
 
 class SignupPage extends StatefulWidget {
@@ -38,7 +39,7 @@ class _SignupPageState extends State<SignupPage> {
             color: Color(0XFF4267B2),
             textColor: Colors.white,
             icon: Image.asset('assets/images/facebook.png', width: 20),
-            onPressed: () {},
+            onPressed: () => navigateToWebview('Facebook Login', FACEBOOK_URL),
           ),
           SizedBox(height: 5),
           CommonButton(
@@ -46,7 +47,7 @@ class _SignupPageState extends State<SignupPage> {
             color: Colors.white,
             textColor: Colors.black,
             icon: Image.asset('assets/images/google.png', width: 20),
-            onPressed: () {},
+            onPressed: () => navigateToWebview('Google Login', GOOGLE_URL),
           ),
           SizedBox(height: 10),
           CommonTextButton(
@@ -85,5 +86,12 @@ class _SignupPageState extends State<SignupPage> {
   void _navigateToLoginPage() {
     Navigator.of(context)
         .pushNamedAndRemoveUntil(LOGIN_ROUTE, (Route<dynamic> route) => false);
+  }
+
+  void navigateToWebview(String title, String url) {
+    Navigator.push(
+        context,
+        new MaterialPageRoute(
+            builder: (context) => new WebviewPage(title: title, url: url)));
   }
 }
