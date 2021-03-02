@@ -1,4 +1,5 @@
 import 'package:amplify_test/utils/app_utils.dart';
+import 'package:amplify_test/utils/validations.dart';
 import 'package:flutter/material.dart';
 
 class LoginBloc {
@@ -7,7 +8,7 @@ class LoginBloc {
     FocusScope.of(context).requestFocus(FocusNode());
 
     ///Validate the given Inputs.
-    if (!isValidEmail(email))
+    if (!Validations.isValidEmail(email))
       showErrorMsg('Please enter a valid Email!');
     else if (password.isEmpty)
       showErrorMsg('Please enter a valid Password!');

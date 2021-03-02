@@ -9,12 +9,12 @@ class Styles {
         color: color);
   }
 
-  static TextStyle bold(
+  static TextStyle medium(
       {Color color, double fontSize = 14, double letterSpacing = 0.0}) {
     return TextStyle(
         fontFamily: 'Poppins',
         fontSize: fontSize,
-        fontWeight: FontWeight.bold,
+        fontWeight: FontWeight.w500,
         letterSpacing: letterSpacing,
         color: color);
   }

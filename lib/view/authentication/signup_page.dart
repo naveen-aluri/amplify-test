@@ -31,7 +31,7 @@ class _SignupPageState extends State<SignupPage> {
           SizedBox(height: 10),
           Text('GAIN BACK CONTROL\nOF YOUR LIFE',
               textAlign: TextAlign.center,
-              style: Styles.bold(color: Colors.white)),
+              style: Styles.medium(color: Colors.white)),
           SizedBox(height: 30),
           CommonButton(
             title: 'SIGN UP WITH FACEBOOK',

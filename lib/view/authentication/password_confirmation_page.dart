@@ -38,7 +38,7 @@ class _PasswordConfirmationPageState extends State<PasswordConfirmationPage> {
     return ListView(
       padding: EdgeInsets.all(20),
       children: [
-        Text('Choose a password', style: Styles.bold(color: Colors.black)),
+        Text('Choose a password', style: Styles.medium(color: Colors.black)),
         SizedBox(height: 10),
         CommonTextField(
           controller: _passwordController,

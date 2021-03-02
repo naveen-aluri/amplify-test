@@ -21,7 +21,7 @@ class CommonButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return RaisedButton.icon(
       color: color,
-      label: Text('$title', style: Styles.bold(color: textColor)),
+      label: Text('$title', style: Styles.medium(color: textColor)),
       onPressed: onPressed,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(25),

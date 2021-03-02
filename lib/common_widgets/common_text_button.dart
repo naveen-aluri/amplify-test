@@ -18,7 +18,7 @@ class CommonTextButton extends StatelessWidget {
       onPressed: onPressed,
       label: Text('$title',
           style: isBold
-              ? Styles.bold(color: color)
+              ? Styles.medium(color: color)
               : Styles.regular(color: color)),
       icon: icon ?? SizedBox(),
     );

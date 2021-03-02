@@ -24,6 +24,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
   void initState() {
     super.initState();
     register = new Register();
+    register.training = TRAINING_DURATION_LIST[0];
+    signupBloc.updateData(register);
   }
 
   @override
@@ -32,7 +34,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
       padding: EdgeInsets.all(20),
       children: [
         Text('What\'s your email address?',
-            style: Styles.bold(color: Colors.black)),
+            style: Styles.medium(color: Colors.black)),
         SizedBox(height: 10),
         CommonTextField(
           controller: _emailController,
@@ -51,7 +53,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
           },
         ),
         SizedBox(height: 30),
-        Text('What\'s your gender?', style: Styles.bold(color: Colors.black)),
+        Text('What\'s your gender?', style: Styles.medium(color: Colors.black)),
         SizedBox(height: 10),
         StreamBuilder(
             stream: genderSelectionBloc.responseData,
@@ -64,7 +66,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
               return GenderWidget(index: _selectedGenderIndex);
             }),
         SizedBox(height: 30),
-        Text('How much do you train?', style: Styles.bold(color: Colors.black)),
+        Text('How much do you train?',
+            style: Styles.medium(color: Colors.black)),
         SizedBox(height: 10),
         CustomDropDown(
           dropDownMenuItems: TRAINING_DURATION_LIST.map((String value) {
@@ -78,6 +81,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
             setState(() {
               _selectedDuration = val;
             });
+            register.training = _selectedDuration;
+            signupBloc.updateData(register);
           },
           value: _selectedDuration ?? TRAINING_DURATION_LIST[0],
         )

@@ -12,7 +12,7 @@ class SignupTabIndicator extends PreferredSize {
           children: [
             Text('SIGN UP',
                 textAlign: TextAlign.center,
-                style: Styles.bold(
+                style: Styles.medium(
                     color: goldColor, fontSize: 16, letterSpacing: 1)),
             StreamBuilder(
                 stream: signupNavigationBloc.responseData,
